@@ -37,7 +37,17 @@ export default function TextForm(props) {
         props.showAlert("Extra spaces removed!", "success");
     }
 
+    const handleCaptialize = () => {
+        let newText=text
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+        setText(newText)
+        props.showAlert("text was captialized", "success");
+    }
+
     const [text, setText] = useState(''); 
+   
     // text = "new text"; // Wrong way to change the state
     // setText("new text"); // Correct way to change the state
     return (
@@ -52,6 +62,7 @@ export default function TextForm(props) {
             <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>Clear Text</button>
             <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleCopy}>Copy Text</button>
             <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleCaptialize}>Captialize Text</button>
         </div>
         <div className="container my-3" style={{color: props.mode==='dark'?'white':'#042743'}}>
             <h2>Your text summary</h2>
